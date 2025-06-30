@@ -1,29 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Cek login saat mount dan setiap navigasi
   useEffect(() => {
-    const checkLogin = () => {
-      const loggedIn = localStorage.getItem("loggedIn");
-      setIsLoggedIn(loggedIn === "true");
-    };
-
-    checkLogin();
-
-    // Jalankan ulang saat route berubah
-    router.events?.on("routeChangeComplete", checkLogin);
-
-    return () => {
-      router.events?.off("routeChangeComplete", checkLogin);
-    };
-  }, [router]);
+    const loggedIn = localStorage.getItem("loggedIn");
+    setIsLoggedIn(loggedIn === "true");
+  }, [pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("loggedIn");
