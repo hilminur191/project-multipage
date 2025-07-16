@@ -1,6 +1,6 @@
 export default function OurTeam() {
   return (
-    <section className="py-8 bg-gray-50 text-black">
+    <section className="py-12 px-4 max-w-3xl mx-auto text-center">
       <h2 className="text-3xl font-bold text-center mb-8">Our Team</h2>
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-4 border rounded text-center">

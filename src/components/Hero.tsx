@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="bg-gray-100 py-20 text-center text-black">
+    <section className="py-12 px-4 max-w-3xl mx-auto text-center">
       <h1 className="text-4xl font-bold mb-4">
         Building Modern, Reliable, and User-Centered Web Solutions
       </h1>

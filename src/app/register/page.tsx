@@ -3,26 +3,30 @@
 import { useState } from "react";
 import Backendless from "@/lib/backendless";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const user = await Backendless.UserService.login(email, password, true);
-      setMessage(`✅ Welcome, ${user.email}!`);
-      console.log("User:", user);
+      await Backendless.UserService.register({ email, password });
+      // setelah register, langsung logout untuk hapus sesi otomatis
+      await Backendless.UserService.logout();
+      setMessage("✅ Registration successful! You can now log in.");
+      setEmail("");
+      setPassword("");
     } catch (err: any) {
       setMessage(`❌ Error: ${err.message}`);
     }
   };
 
+
   return (
     <div className="max-w-md mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleLogin} className="flex flex-col gap-4">
+      <h1 className="text-2xl font-bold mb-4">Register</h1>
+      <form onSubmit={handleRegister} className="flex flex-col gap-4">
         <input
           type="email"
           placeholder="Email"
@@ -41,9 +45,9 @@ export default function LoginPage() {
         />
         <button
           type="submit"
-          className="bg-green-500 text-white py-2 rounded hover:bg-green-600"
+          className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
         >
-          Login
+          Register
         </button>
       </form>
       {message && <p className="mt-4">{message}</p>}

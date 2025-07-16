@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "backendless": "^7.4.6",
     "next": "15.3.4",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
